@@ -25,24 +25,26 @@ public class UserServiceImpl implements UserService {
 	public UserDetails loadUserByUsername(String userId) throws UsernameNotFoundException {
 		
 		
-		UserVO vo = new UserVO();
-		vo.setUserid("admin");
-		vo.setUserpw("root123");
-		vo.setUserName("Hong Gil Dong");
-		vo.setRole("ADMIN");
+//		UserVO vo = new UserVO();
+//		vo.setUserid("admin");
+//		vo.setUserpw("root123");
+//		vo.setUserName("Hong Gil Dong");
+//		vo.setRole("ADMIN");
+//		
+		UserVO vo;
+		try {
+			vo = dao.getUser(userId);
+			SecurityUserVO securityUser = new SecurityUserVO(vo);
+			return securityUser;
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
-//		UserVO vo;
-//		try {
-//			vo = dao.getUser(userId);
-//			SecurityUserVO securityUser = new SecurityUserVO(vo);
-//			return securityUser;
-//			
-//		} catch (Exception e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
+		return null;
 		
-		return new SecurityUserVO(vo);
+//		return new SecurityUserVO(vo);
 	}
 	
 

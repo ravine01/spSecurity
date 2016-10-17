@@ -16,4 +16,11 @@ public class ZerockRole implements GrantedAuthority {
 		return roleName;
 	}
 
+	@Override
+	public String toString() {
+		return "ZerockRole [roleName=" + roleName + "]";
+	}
+	
+	
+
 }

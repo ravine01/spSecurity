@@ -5,8 +5,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="org.zerock.mapper.UserMapper">
 
+
+
   <select id="loginUser" resultType="org.zerock.domain.UserVO">
-  select * from tbl_user where uid = #{userid}
+  select uid userid, upw userpw, uname userName, auth as role from tbl_user where uid = #{userid}
   </select>
 
 </mapper>

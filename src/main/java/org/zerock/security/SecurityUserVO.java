@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.zerock.domain.UserVO;
@@ -17,20 +18,22 @@ public class SecurityUserVO implements UserDetails {
 	private boolean accountNonLocked = true;
 	private boolean credentialsNonExpired = true;
 	private boolean enabled = true;
+	
+	private List<GrantedAuthority> authorities;
 
 	public SecurityUserVO(UserVO vo) {
 
 		this.vo = vo;
 
 		this.role = new ZerockRole("ROLE_" + vo.getRole());
+		authorities = new ArrayList<GrantedAuthority>();
+		authorities.add(this.role);
 	}
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 
-		List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
-		authorities.add(this.role);
-
+		
 		return authorities;
 	}
 
